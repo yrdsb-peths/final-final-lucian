@@ -8,15 +8,36 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Player extends Actor
 {
-    public Player(){
-        GreenfootImage image = getImage();
-        image.scale(50, 50);
-    }
     private GreenfootImage[] thrusterAnimation;
     private int animationIndex = 0;
     private int count = 0;
+    public Player(){
+        GreenfootImage image = getImage();
+        image.scale(50, 50);
+        thrusterAnimation = new GreenfootImage[2];
+        thrusterAnimation[0] = new GreenfootImage("ship_fire1.png");
+        thrusterAnimation[1] = new GreenfootImage("ship_fire2.png");
+        setImage(thrusterAnimation[0]);
+    }
+    
     public void act()
     {
+        checkKeyPress();
         
+    }
+    private void checkKeyPress(){
+        if(Greenfoot.isKeyDown("left")){
+            setLocation(getX() - 5, getY());
+        }
+        if(Greenfoot.isKeyDown("right")){
+            setLocation(getX() + 5, getY());
+        }
+        if(Greenfoot.isKeyDown("space")){
+            shootLaser();
+        }
+    }
+    private void shootLaser(){
+        Laser laser = new Laser();
+        getWorld().addObject(laser, getX(), getY() - 30);
     }
 }
