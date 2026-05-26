@@ -8,12 +8,15 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Laser extends Actor
 {
-    /**
-     * Act - do whatever the Laser wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    public Laser(){
+        GreenfootImage image = getImage();
+        image.scale(20, 20);
+    }
     public void act()
     {
-        // Add your action code here.
+        setLocation(getX(), getY() - 8);
+        if(getY() <= 0){
+            getWorld().removeObject(this);
+        }
     }
 }
