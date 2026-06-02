@@ -15,16 +15,17 @@ public class Laser extends Actor
     public void act()
     {
         setLocation(getX(), getY() - 8);
+        beat();
         if(getY() <= 0){
             getWorld().removeObject(this);
             return;
         }
-        beat();
     }
     public void beat(){
         if(isTouching(Apple.class)){
             removeTouching(Apple.class);
             MyWorld world = (MyWorld) getWorld();
+            world.increaseScore();
             world.createApple();
         }
     }
