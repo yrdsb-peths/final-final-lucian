@@ -8,6 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Player extends Actor
 {
+    private int laserTimer = 0; //set a varble which contorl the laser shoot frequence
     private GreenfootImage[] thrusterAnimation;
     private int animationIndex = 0;
     private int count = 0;
@@ -27,6 +28,7 @@ public class Player extends Actor
     {
         checkKeyPress();
         count++;
+        laserTimer++;
         if(count % 10 == 0){
             animationIndex = (animationIndex + 1) % thrusterAnimation.length;
             setImage(thrusterAnimation[animationIndex]);
@@ -39,8 +41,9 @@ public class Player extends Actor
         if(Greenfoot.isKeyDown("right")){
             setLocation(getX() + 5, getY());
         }
-        if(Greenfoot.isKeyDown("space")){
+        if(Greenfoot.isKeyDown("space") && laserTimer > 15){
             shootLaser();
+            laserTimer = 0;
         }
     }
     private void shootLaser(){
