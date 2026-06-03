@@ -27,8 +27,13 @@ public class Player extends Actor
     public void act()
     {
         checkKeyPress();
-        count++;
         laserTimer++;
+        if(laserTimer >= 10){
+            shootLaser();
+            laserTimer = 0;
+        }
+        count++;
+        //Contorl the speed of animation
         if(count % 10 == 0){
             animationIndex = (animationIndex + 1) % thrusterAnimation.length;
             setImage(thrusterAnimation[animationIndex]);
@@ -40,10 +45,6 @@ public class Player extends Actor
         }
         if(Greenfoot.isKeyDown("right")){
             setLocation(getX() + 5, getY());
-        }
-        if(Greenfoot.isKeyDown("space") && laserTimer > 15){
-            shootLaser();
-            laserTimer = 0;
         }
     }
     private void shootLaser(){

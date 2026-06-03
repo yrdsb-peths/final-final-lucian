@@ -6,22 +6,39 @@ public class MyWorld extends World {
     public MyWorld() {
         super(600, 400, 1);
         prepare();
-        createApple();
+        createEnemy();
         scoreLabel = new Label(0,40);
         addObject(scoreLabel, 20, 20);
     }
     public void increaseScore(){
         score++;
         scoreLabel.setValue(score);
+        if(score % 5 == 0 && score != 0){
+            spawnBoss();
+        }else{
+            createEnemy();
+        }
     }
     private void prepare(){
         Player player = new Player();
         addObject(player, 300, 350);
     }
-    public void createApple(){
-        Apple apple = new Apple();
-        int x = Greenfoot.getRandomNumber(600);
+    public void createEnemy(){
+        Enemy newEnemy;
+        int enemyType = Greenfoot.getRandomNumber(2);
+        if (enemyType == 0) {
+            newEnemy = new Enemy1(); 
+        } else {
+            newEnemy = new Enemy2(); 
+        }
+        int x = Greenfoot.getRandomNumber(getWidth());
         int y = 0;
-        addObject(apple, x, y);
+        addObject(newEnemy, x, y);
+    }
+    private void spawnBoss(){
+        Boss boss = new Boss();
+        int x = getWidth() / 2;
+        int y = 0;
+        addObject(boss, x, y);
     }
 }
