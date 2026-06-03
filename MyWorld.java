@@ -15,8 +15,6 @@ public class MyWorld extends World {
         scoreLabel.setValue(score);
         if(score % 5 == 0 && score != 0){
             spawnBoss();
-        }else{
-            createEnemy();
         }
     }
     private void prepare(){
