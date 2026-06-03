@@ -9,10 +9,13 @@ public class Enemy extends Actor
     }
     public void act()
     {
+        if (getWorld() == null) return;
         setLocation(getX(),getY() + 1);
         checkLaserHit();
+        if (getWorld() == null) return;
         if(getY() >= getWorld().getHeight() - 1){
             getWorld().removeObject(this);
+            return;
         }
         checkLive();
     }
@@ -27,6 +30,10 @@ public class Enemy extends Actor
             MyWorld world = (MyWorld) getWorld();
             world.increaseScore();
             world.createEnemy();
+            if(this instanceof Boss) {
+                Prop speedPacket = new Prop();
+                getWorld().addObject(speedPacket, getX(), getY());
+            }
             getWorld().removeObject(this);
         }
     }

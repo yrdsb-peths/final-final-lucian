@@ -5,10 +5,10 @@ public class MyWorld extends World {
     Label scoreLabel;
     public MyWorld() {
         super(600, 400, 1);
-        prepare();
-        createEnemy();
         scoreLabel = new Label(0,40);
         addObject(scoreLabel, 20, 20);
+        prepare();
+        createEnemy();
     }
     public void increaseScore(){
         score++;
