@@ -20,21 +20,24 @@ public class Enemy extends Actor
         checkLive();
     }
     private void checkLaserHit(){
-        if(isTouching(Laser.class)){
-            removeTouching(Laser.class);
+        Actor laser = getOneIntersectingObject(Laser.class);
+        if(laser != null && laser.getWorld() != null){
+            getWorld().removeObject(laser);
             hp--;
         }
     }
     private void checkLive(){
         if(hp <= 0){
             MyWorld world = (MyWorld) getWorld();
-            world.increaseScore();
-            world.createEnemy();
-            if(this instanceof Boss) {
-                Prop speedPacket = new Prop();
-                getWorld().addObject(speedPacket, getX(), getY());
-            }
-            getWorld().removeObject(this);
+            if(world != null){
+                world.increaseScore();
+                world.createEnemy();
+                if(this instanceof Boss) {
+                    Prop speedPacket = new Prop();
+                    getWorld().addObject(speedPacket, getX(), getY());
+                }
+                getWorld().removeObject(this);
+            }  
         }
     }
 }

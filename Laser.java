@@ -14,10 +14,12 @@ public class Laser extends Actor
     }
     public void act()
     {
+        if(getWorld() == null) return;
         setLocation(getX(), getY() - 8);
         if(getY() <= 0){
             getWorld().removeObject(this);
             return;
         }
     }
+
 }

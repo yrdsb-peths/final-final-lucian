@@ -31,10 +31,16 @@ public class Player extends Actor
         laserTimer++;
         int shootInterval = 15;
         if(weaponLevel == 2){
-            shootInterval = 10;
+            shootInterval = 13;
         }
         if(weaponLevel == 3){
+            shootInterval = 10;
+        }
+        if(weaponLevel == 4){
             shootInterval = 6;
+        }
+        if(weaponLevel == 5){
+            shootInterval = 3;
         }
         if(laserTimer >= shootInterval){
             shootLaser();
@@ -61,6 +67,5 @@ public class Player extends Actor
     }
     public void upgradeWeapon() {
         weaponLevel++; 
-        System.out.println("Weapon upgrade! Current level: " + weaponLevel); 
     }
 }
