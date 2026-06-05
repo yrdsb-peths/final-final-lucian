@@ -12,7 +12,8 @@ public class Player extends Actor
     private GreenfootImage[] thrusterAnimation;
     private int animationIndex = 0;
     private int count = 0;
-    private int weaponLevel = 1;
+    public int weaponLevel = 1;
+    private int[] intervals = {0, 15, 13, 10, 6, 3};
     public Player(){
         GreenfootImage image = getImage();
         image.scale(50, 50);
@@ -30,17 +31,10 @@ public class Player extends Actor
         checkKeyPress();
         laserTimer++;
         int shootInterval = 15;
-        if(weaponLevel == 2){
-            shootInterval = 13;
-        }
-        if(weaponLevel == 3){
-            shootInterval = 10;
-        }
-        if(weaponLevel == 4){
-            shootInterval = 6;
-        }
-        if(weaponLevel == 5){
-            shootInterval = 3;
+        if (weaponLevel >= 1 && weaponLevel < intervals.length){
+            shootInterval = intervals[weaponLevel];   
+        } else if (weaponLevel >= intervals.length) {
+            shootInterval = 2;
         }
         if(laserTimer >= shootInterval){
             shootLaser();

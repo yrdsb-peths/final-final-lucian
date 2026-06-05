@@ -15,7 +15,7 @@ public class MyWorld extends World {
         if (scoreLabel != null) {
             scoreLabel.setValue(score);
         }
-        if(score % 10 == 0 && score != 0){
+        if(score % 2 == 0 && score != 0){
             spawnBoss();
         }
     }
@@ -36,7 +36,13 @@ public class MyWorld extends World {
         addObject(newEnemy, x, y);
     }
     private void spawnBoss(){
-        Boss boss = new Boss();
+        int currentLevel = 1;
+        java.util.List<Player> players = getObjects(Player.class);
+        if(!players.isEmpty()){
+            Player p = players.get(0);
+            currentLevel = p.weaponLevel;
+        }
+        Boss boss = new Boss(currentLevel);
         int x = getWidth() / 2;
         int y = 0;
         addObject(boss, x, y);
