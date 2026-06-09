@@ -12,10 +12,15 @@ public class MyWorld extends World {
     }
     public void increaseScore(){
         score++;
-        if (scoreLabel != null) {
+        if(scoreLabel != null){
             scoreLabel.setValue(score);
         }
-        if(score % 2 == 0 && score != 0){
+        // the winning condition,
+        if(score >= 60){
+            youWin();
+            return;
+        }
+        if(score % 10 == 0 && score != 0){
             spawnBoss();
         }
     }
@@ -43,8 +48,18 @@ public class MyWorld extends World {
             currentLevel = p.weaponLevel;
         }
         Boss boss = new Boss(currentLevel);
-        int x = getWidth() / 2;
+        int x = Greenfoot.getRandomNumber(getWidth());
         int y = 0;
         addObject(boss, x, y);
+    }
+    public void gameOver(){
+        Label gameOverLabel = new Label("Game Over", 50);
+        addObject(gameOverLabel, getWidth() / 2, getHeight() / 2);
+        Greenfoot.stop();
+    }
+    public void youWin(){
+        Label winLabel = new Label("You Win!", 50);
+        addObject(winLabel, getWidth() / 2, getHeight() / 2);
+        Greenfoot.stop();
     }
 }

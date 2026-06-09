@@ -13,6 +13,12 @@ public class Enemy extends Actor
         setLocation(getX(),getY() + 1);
         checkLaserHit();
         if (getWorld() == null) return;
+        if(getY() >= 390){
+            MyWorld world = (MyWorld) getWorld();
+            if (world != null){
+                world.gameOver();
+            }
+        }
         if(getY() >= getWorld().getHeight() - 1){
             getWorld().removeObject(this);
             return;
