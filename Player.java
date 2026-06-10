@@ -14,6 +14,7 @@ public class Player extends Actor
     private int count = 0;
     public int weaponLevel = 1;
     private int[] intervals = {0, 15, 13, 10, 6, 3};
+    private GreenfootSound shootSound = new GreenfootSound("shootSound.wav");
     public Player(){
         GreenfootImage image = getImage();
         image.scale(50, 50);
@@ -57,6 +58,7 @@ public class Player extends Actor
     }
     private void shootLaser(){
         Laser laser = new Laser();
+        Greenfoot.playSound("shootSound.wav");
         getWorld().addObject(laser, getX(), getY() - 30);
     }
     public void upgradeWeapon() {

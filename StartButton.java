@@ -15,7 +15,11 @@ public class StartButton extends Actor
     }
     public void act()
     {
-        if (Greenfoot.mousePressed(this)){
+        if (Greenfoot.mousePressed(this)) {
+            StartWorld world = (StartWorld) getWorld();
+            if (world != null){
+                world.stopAllSounds();
+            }
             Greenfoot.setWorld(new MyWorld());
         }
     }
