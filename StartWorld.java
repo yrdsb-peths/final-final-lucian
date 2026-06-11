@@ -3,7 +3,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 public class StartWorld extends World
 {
-    private GreenfootSound bgm = new GreenfootSound("background.wav");
+    private GreenfootSound bgm = new GreenfootSound("background.wav"); // the background sound 
     public StartWorld(){    
         super(600, 400, 1); 
         StartButton startBtn = new StartButton();

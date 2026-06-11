@@ -2,7 +2,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 public class Enemy extends Actor
 {
-    protected int hp = 1;
+    protected int hp = 1; //create the hp variable 
     
     public Enemy(){
         setRotation(180);
@@ -19,12 +19,14 @@ public class Enemy extends Actor
                 world.gameOver();
             }
         }
-        if(getY() >= getWorld().getHeight() - 1){
+        //When the enemy on the top of greenfoot, remove the object
+        if(getY() >= getWorld().getHeight() - 1){ 
             getWorld().removeObject(this);
             return;
         }
         checkLive();
     }
+    //this method is used to determine if it hits and deduct hp
     private void checkLaserHit(){
         Actor laser = getOneIntersectingObject(Laser.class);
         if(laser != null && laser.getWorld() != null){
@@ -32,6 +34,7 @@ public class Enemy extends Actor
             hp--;
         }
     }
+    //this method used to create a prop object
     private void checkLive(){
         if(hp <= 0){
             MyWorld world = (MyWorld) getWorld();

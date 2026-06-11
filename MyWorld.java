@@ -10,6 +10,9 @@ public class MyWorld extends World {
         prepare();
         createEnemy();
     }
+    /*
+     * this method is used to increase the total score, and the boss apperars once every ten score.
+     */
     public void increaseScore(){
         score++;
         if(scoreLabel != null){
@@ -24,13 +27,14 @@ public class MyWorld extends World {
             spawnBoss();
         }
     }
+    //add the object player
     private void prepare(){
         Player player = new Player();
         addObject(player, 300, 350);
     }
     public void createEnemy(){
         Enemy newEnemy;
-        int enemyType = Greenfoot.getRandomNumber(2);
+        int enemyType = Greenfoot.getRandomNumber(2); // cause there are two different hp enemy, so use the random number to random create two different enemy.
         if (enemyType == 0) {
             newEnemy = new Enemy1(); 
         } else {
@@ -42,10 +46,10 @@ public class MyWorld extends World {
     }
     private void spawnBoss(){
         int currentLevel = 1;
-        java.util.List<Player> players = getObjects(Player.class);
+        java.util.List<Player> players = getObjects(Player.class);// this code find all Player objects from the current world and store them in the players list.
         if(!players.isEmpty()){
             Player p = players.get(0);
-            currentLevel = p.weaponLevel;
+            currentLevel = p.weaponLevel; //the weapon level method
         }
         Boss boss = new Boss(currentLevel);
         int x = Greenfoot.getRandomNumber(getWidth());
